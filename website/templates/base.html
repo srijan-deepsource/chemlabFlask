@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script src="../static/packages/moment.js"></script>
+    <script>
+      window.onload = function () {
+        document
+          .querySelectorAll(".datetime_to_be_adjusted")
+          .forEach(function (el) {
+            var utcTime = moment.utc(el.innerText);
+            utcTime.local(); //
+            el.innerText = utcTime.format("MMMM Do YYYY, h:mm:ss A");
+          });
+      };
+    </script>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="../static/bootstrap/css/bootstrap.css" rel="stylesheet" />
+    <title>{% block title %}Base Title{% endblock %}</title>
+  </head>
+  <body>
+    <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-primary">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">ChemLab</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbar"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbar">
+          <div class="navbar-nav">
+            {% if user.is_authenticated %}
+            <a class="nav-item nav-link" id="home" href="/">Home</a>
+            <a class="nav-item nav-link" id="rent" href="/rent">Rent</a>
+            <a class="nav-item nav-link" id="add_balance" href="/add-balance"
+              >Add Balance</a
+            >
+            <a class="nav-item nav-link" id="logout" href="/logout">Logout</a>
+          </div>
+          <div class="navbar-nav ms-auto">
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                href="#"
+                id="navbarDropdown"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                Settings
+              </a>
+              <ul class="dropdown-menu">
+                <li>
+                  <a class="dropdown-item" href="/change-password"
+                    >Change Password</a
+                  >
+                </li>
+              </ul>
+            </li>
+            <a class="navbar-text">Balance: {{ user.balance }}</a>
+          </div>
+          {% else %}
+          <div class="navbar-nav">
+            <a class="nav-item nav-link" id="login" href="/login">Login</a>
+            <a class="nav-item nav-link" id="signUp" href="/sign-up">Sign Up</a>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    {% with messages = get_flashed_messages(with_categories=true) %} {% if
+    messages %} {% for category, message in messages %}
+    <div
+      class="alert alert-{{ category }} alert-dismissible fade show"
+      role="alert"
+    >
+      {{ message }}
+      <button
+        type="button"
+        class="btn-close"
+        data-bs-dismiss="alert"
+        aria-label="Close"
+      ></button>
+    </div>
+    {% endfor %} {% endif %} {% endwith %}
+
+    <div class="container">{% block content %}{% endblock %}</div>
+    <script src="../static/custom_js/form_validate.js"></script>
+    <script src="../static/bootstrap/js/bootstrap.bundle.js"></script>
+    <script src="../static/custom_js/index.js"></script>
+    {% block script %}{% endblock %}
+  </body>
+</html>

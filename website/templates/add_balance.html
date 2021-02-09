@@ -1,0 +1,22 @@
+{% extends "base.html" %}{% block title %}Add Balance{% endblock %}{% block
+content %}
+<br />
+<p class="h2 text-center text-info">
+  Your balance is currently AED {{ user.balance }}, Add more below
+</p>
+<form class="form-floating" method="post">
+  <input
+    name="balance"
+    type="number"
+    class="form-control"
+    id="balance"
+    placeholder="0"
+  />
+  <label for="balance">Enter balance to add.</label>
+  <div id="text" class="form-text">
+    Your balance will be credited instantly.
+  </div>
+  <br />
+  <button type="submit" class="btn btn-outline-primary col-12">Add</button>
+</form>
+{% endblock %}

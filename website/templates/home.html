@@ -1,0 +1,77 @@
+{% extends "base.html" %}{% block title %}Home{% endblock %}{% block content %}
+<br />
+<p class="h1 text-center text-success fw-bold">
+  Hey there {{ user.first_name }}!
+</p>
+<br />
+<p class="h2 text-start text-info">
+  Your balance is currently AED {{ user.balance }}!
+</p>
+<p class="h2 text-start text-info">Here are your active rentals,</p>
+<div class="table-responsive">
+  <table class="table table-dark table-hover table-bordered">
+    <thead>
+      <tr>
+        <th scope="col" class="text-center">Item</th>
+        <th scope="col" class="text-center">Quantity</th>
+        <th scope="col" class="text-center">Date/Time when rented</th>
+        <th scope="col" class="text-center">Return?</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for order in user.rentals %} {% if not order.returned %}
+      <tr>
+        <td class="text-capitalize text-center">{{ order.item.item_name }}</td>
+        <td class="text-center">{{ order.quantity }}</td>
+        <td class="text-center datetime_to_be_adjusted">
+          {{ order.when_rented }}
+        </td>
+        <td class="text-center">
+          <button
+            type="button"
+            class="btn btn-outline-info col-12"
+            onclick="returnItem({{ order.order_id }})"
+          >
+            Return
+          </button>
+        </td>
+      </tr>
+      {% endif %} {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+<p class="h2 text-start text-info">
+  Here are your previously completed rentals,
+</p>
+<div class="table-responsive">
+  <table class="table table-dark table-hover table-bordered">
+    <thead>
+      <tr>
+        <th scope="col" class="text-center">Item</th>
+        <th scope="col" class="text-center">Quantity</th>
+        <th scope="col" class="text-center">Date/Time when rented</th>
+        <th scope="col" class="text-center">Date/Time when rented</th>
+        <th scope="col" class="text-center">Hours charged for</th>
+        <th scope="col" class="text-center">Amount charged</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for order in user.rentals %} {% if order.returned %}
+      <tr>
+        <td class="text-capitalize text-center">{{ order.item.item_name }}</td>
+        <td class="text-center">{{ order.quantity }}</td>
+        <td class="text-center datetime_to_be_adjusted">
+          {{ order.when_rented }}
+        </td>
+        <td class="text-center datetime_to_be_adjusted">
+          {{ order.when_returned }}
+        </td>
+        <td class="text-center">{{ order.hours }}</td>
+        <td class="text-center">AED {{ order.amount }}</td>
+      </tr>
+      {% endif %} {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

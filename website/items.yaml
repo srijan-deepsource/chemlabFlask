@@ -1,0 +1,41 @@
+beaker:
+  item_name: beaker
+  total_stock: 25
+  available_stock: 25
+  price: 5
+
+test_tube:
+  item_name: test tube
+  total_stock: 50
+  available_stock: 50
+  price: 2
+
+watchglass:
+  item_name: watchglass
+  total_stock: 15
+  available_stock: 15
+  price: 7
+
+flask:
+  item_name: flask
+  total_stock: 30
+  available_stock: 30
+  price: 4
+
+funnel:
+  item_name: funnel
+  total_stock: 20
+  available_stock: 20
+  price: 5
+
+burette:
+  item_name: burette
+  total_stock: 25
+  available_stock: 25
+  price: 5
+
+pipette:
+  item_name: pipette
+  total_stock: 25
+  available_stock: 25
+  price: 5

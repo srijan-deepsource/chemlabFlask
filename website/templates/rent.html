@@ -1,0 +1,33 @@
+{% extends "base.html" %}{% block title %}Rent{% endblock %}{% block content %}
+<h1 class="text-center">RENT</h1>
+<form method="POST" class="needs-validation" novalidate>
+  <div class="form">
+    <select class="form-select" name="item" required>
+      <option selected value="">Select an Item</option>
+      {% for item in items_list %}
+      <option value="{{ item.item_name }}">
+        {{ item.item_name.capitalize() }} AED {{ item.price }}/hr
+      </option>
+      {% endfor %}
+    </select>
+    <div class="invalid-feedback">Please select a valid item.</div>
+  </div>
+  <br />
+  <div class="form-floating">
+    <input
+      name="quantity"
+      type="number"
+      class="form-control"
+      id="quantity"
+      placeholder="Enter Quantity."
+      required
+    />
+    <div class="invalid-feedback">Please enter a valid quantity.</div>
+    <label for="floatingPassword">Enter Quantity.</label>
+  </div>
+  <br />
+  <div align="center">
+    <button type="submit" class="btn btn-primary">Rent</button>
+  </div>
+</form>
+{% endblock %}

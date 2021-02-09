@@ -1,0 +1,73 @@
+{% extends "base.html" %} {% block title %}Sign Up{% endblock %}{% block content
+%}
+<br />
+<form method="POST" class="needs-validation" novalidate>
+  <h3 class="text-center">Sign Up</h3>
+  <br />
+  <div class="form-group form-floating">
+    <input
+      type="email"
+      class="form-control"
+      id="email"
+      name="email"
+      placeholder="Enter email"
+      required
+    />
+    <div class="valid-feedback">Looks good!</div>
+    <div class="invalid-feedback">Please Enter a valid email.</div>
+    <label for="email">Email Address</label>
+    <div id="emailHelpBlock" class="form-text">
+      We'll never share you email with anyone else.
+    </div>
+  </div>
+  <br />
+  <div class="form-group form-floating">
+    <input
+      type="text"
+      class="form-control"
+      id="firstName"
+      name="firstName"
+      placeholder="Enter First Name"
+      required
+    />
+    <div class="valid-feedback">Looks good!</div>
+    <div class="invalid-feedback">Please Enter a valid first name.</div>
+    <label for="firstName">First Name</label>
+  </div>
+  <br />
+  <div class="form-group form-floating">
+    <input
+      type="password"
+      class="form-control"
+      id="password1"
+      name="password1"
+      placeholder="Enter password"
+      required
+      minlength="7"
+    />
+    <div class="valid-feedback">Looks good!</div>
+    <label for="password1">Password</label>
+  </div>
+  <div id="passwordHelpBlock" class="form-text">
+    Your password is hashed using SHA256.
+  </div>
+  <div id="passwordHelpBlock2" class="form-text">
+    Your password must be at least 7 characters long.
+  </div>
+  <br />
+  <div class="form-group form-floating">
+    <input
+      type="password"
+      class="form-control"
+      id="password2"
+      name="password2"
+      placeholder="Confirm password"
+      required
+      minlength="7"
+    />
+    <label for="password2">Confirm Password</label>
+  </div>
+  <br />
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+{% endblock %}
